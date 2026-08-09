@@ -60,6 +60,14 @@ MindSpace offers a comprehensive suite of features for student burnout analysis:
   - Edit data directly through the web interface
   - Automatic recalculation of all metrics upon data changes
 
+- **⚛️ React Query Data Management**:
+
+  * Uses React Query for frontend server-state management and data fetching
+  * Handles dataset upload and session-reset operations through mutations
+  * Automatically invalidates the history query after successful uploads or session resets
+  * Keeps history-related UI data synchronized with the latest server state
+
+
 - **🔒 Robust Error Handling**: 
   - Division by zero protection in burnout calculations
   - Automatic data type conversion for numeric fields
@@ -70,12 +78,12 @@ MindSpace offers a comprehensive suite of features for student burnout analysis:
 
 | Layer | Technology |
 |-------|------------|
+| **Frontend** | React, TypeScript, React Query |
 | **Backend** | Python, Flask |
 | **Data Processing** | Pandas, NumPy |
 | **Machine Learning** | scikit-learn (Random Forest) |
 | **NLP** | NLTK (VADER Sentiment Analyzer) |
 | **Visualization** | Matplotlib, seaborn |
-| **Frontend** | HTML5, CSS3 (Vanilla), Jinja2 |
 | **Fonts** | Outfit (Google Fonts) |
 
 ## 📦 Installation
@@ -250,6 +258,18 @@ The repository includes sample datasets for testing:
 - `data/test_data.csv` - Additional test data with diverse scenarios
 
 ## 💡 Usage
+
+## ⚛️ Frontend Data Management
+
+The MindSpace frontend uses React Query to manage server state and asynchronous data operations.
+
+- **History fetching**: `useHistory()` uses React Query's `useQuery` to retrieve history data.
+- **File uploads**: `useUploadFile()` uses `useMutation` to handle dataset uploads.
+- **Session reset**: `useResetSession()` uses `useMutation` to reset the current session.
+- **Automatic synchronization**: After a successful upload or session reset, the `history` query is invalidated automatically so the latest history data can be fetched without requiring a manual page reload.
+
+This approach keeps frontend data synchronized with the backend while centralizing asynchronous operations in reusable hooks.
+
 
 ### Workflow
 
